@@ -62,7 +62,7 @@
     tags:
     - mongodb # you must -t mongodb in command line 
   - name: load products
-    shell: mongosh --host "{{ MOGODB_HOST }}" </app/db/master-data.js
+    shell: mongosh --host "{{ MONGODB_HOST }}" </app/db/master-data.js
     when: catalogue_output.stdout | int < 0
     tags:
     - mongodb
