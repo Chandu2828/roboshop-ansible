@@ -52,7 +52,7 @@
       name: mongodb-mongosh 
       state: present
   - name: check catalogue schema exist or not
-    shell: mongodb --host "{{ MONGODB_HOST }}" --eval 'db.getMongo().getDBNames().indexOf{"catalogue"}'
+    shell: mongosh --host "{{ MONGODB_HOST }}" --eval 'db.getMongo().getDBNames().indexOf{"catalogue"}'
     register: catalogue_output
     tags:
     - mongodb # to run only specfic tasks excluding above ones
