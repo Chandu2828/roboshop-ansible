@@ -7,6 +7,12 @@
     domain_name: vnmurthy.online
     input: create
   tasks:
+  - name: install python packages
+    pip:
+      name: "{{ item }}"
+      loop:
+      - boto3
+      - botocore
   - name: create ec2 instances
     amazon.aws.ec2_instance:
       instance_type: t2.micro
