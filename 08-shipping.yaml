@@ -62,7 +62,7 @@
       login_host: "{{ MYSQL_HOST }}"
       target: "{{ item }}"
     loop:
-    - /app/db/schema.mysql
+    - /app/db/schema.sql
     - /app/db/app-user.sql
     - /app/db/master-data.sql
   - name: daemon-reload
