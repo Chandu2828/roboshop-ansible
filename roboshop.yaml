@@ -10,6 +10,7 @@
   - name: install python packages
     pip:
       name: "{{ item }}"
+      state: present
       loop:
       - boto3
       - botocore
