@@ -63,7 +63,7 @@
     - mongodb # you must -t mongodb in command line 
   - name: load products
     shell: mongosh --host "{{ MONGODB_HOST }}" </app/db/master-data.js
-    when: catalogue_output.stdout | int < 0
+    when: catalogue_output.stdout | int < 0 # Here the output of stdout is a string as so we are converting the string to a integer with int 
     tags:
     - mongodb
   - name: daemon reload

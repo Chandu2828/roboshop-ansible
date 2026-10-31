@@ -6,7 +6,7 @@
     image_id: ami-0220d79f3f480ecf5
     domain_name: vnmurthy.online
     input: create
-  tasks:
+  tasks: # To interact with aws, ansible requires these python packages
   - name: install python packages
     pip:
       name: "{{ item }}"
@@ -31,7 +31,8 @@
   # - name: create route53 record
   #   debug:
   #     msg: "Instance Name: {{ item.item }} PrivateIP: {{ item.instances[0].private_ip_address }}"
-  #   loop: "{{ ec2_output.results }}"
+        # Instance name is present in item variable in the ec2_output
+  #   loop: "{{ ec2_output.results }}" # We will use item because the loop will execute on results
   - name: create r53 records
     amazon.aws.route53:
       state: present
@@ -88,4 +89,14 @@
     loop: "{{ instances }}"
     when: input == "delete"
 
+# you need to configure your cli with your aws credentials 
+# aws configure
+# aws_access_key:
+# aws_secret_access_key: 
+
+# commands:
+
+# ansible-playbook -i inventory.ini -e “instances=[‘frontend’]” roboshop.yaml → To pass an arugument via command line. 
+# ansible-playbook -i inventory.ini -e “input=delete” roboshop.yaml → To pass the input from command line 
+# ansible-playbook -i inventory.ini -e “input=delete” -e “instances=[‘mongodb’, ‘mysql’, ‘redis’, ‘rabbitmq’]” --> To delete particular instances
 
