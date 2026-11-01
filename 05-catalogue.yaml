@@ -35,12 +35,15 @@
     unarchive:
       src: /tmp/catalogue.zip
       dest: /app
-      remote_src: yes
+      remote_src: yes # The archive is already on the target host. Ansible skips the copy step and extracts it in place.
+# "remote_src: no" The archive is on the control node (the machine running Ansible). Ansible copies it to the target host first, then extracts it.
   - name: install dependencies
     community.general.npm:
       path: /app
   - name: copy catalogue service
-    template:
+    template: 
+# copy transfers a file exactly as it is. 
+# Template first processes the file through Jinja2, filling in variables, conditions, and loops, and then transfers the result.
       src: catalogue.service.j2
       dest: /etc/systemd/system/catalogue.service
   - name: copy mongodb repo
@@ -54,7 +57,7 @@
   - name: check catalogue schema exist or not
     shell: mongosh --host "{{ MONGODB_HOST }}" --eval 'db.getMongo().getDBNames().indexOf("catalogue")'
     register: catalogue_output
-    tags:
+    tags: # tags are used to run only specific tasks when we run the playbook
     - mongodb # to run only specfic tasks excluding above ones
   - name: print catalogue output 
     debug:
@@ -76,3 +79,5 @@
       state: restarted
       enabled: yes
 
+# ansible-playbook 05-catalogue.yaml -t mongodb - Runs only the tasks with mongodb 
+# ansible-playbook 05-catalogue.yaml 

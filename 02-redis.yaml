@@ -13,7 +13,7 @@
       path: /etc/redis/redis.conf
       regexp: '127.0.0.1'
       replace: '0.0.0.0'
-  - name: change protected mode 
+  - name: change protected mode # here we are replacing a entire line instaed of word
     lineinfile:
       path: /etc/redis/redis.conf
       regexp: 'protected-mode'
@@ -23,3 +23,5 @@
       name: redis
       state: started
       enabled: yes
+
+# ansible-playbook 02-redis.yaml

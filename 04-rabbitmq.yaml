@@ -26,3 +26,5 @@
           write_priv: .*
       state: present
       
+# ansible-playbook 04-rabbitmq.yaml
+

@@ -14,3 +14,5 @@
   - name: setup root password 
     command: mysql_secure_installation --set-root-pass RoboShop@1
 
+# ansible-playbook 03-mysql.yaml
+
