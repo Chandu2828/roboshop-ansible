@@ -57,3 +57,5 @@
       name: payment
       state: restarted
       enabled: yes
+
+# ansible-playbook 09-payment.yaml

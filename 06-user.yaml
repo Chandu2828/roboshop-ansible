@@ -52,4 +52,5 @@
       name: user
       state: restarted
       enabled: yes
-      
+
+# ansible-playbook 06-user.yaml

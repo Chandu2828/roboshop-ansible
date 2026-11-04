@@ -53,3 +53,4 @@
       state: restarted
       enabled: yes
 
+# ansible-playbook 07-cart.yaml

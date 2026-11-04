@@ -42,3 +42,6 @@
       name: nginx
       state: restarted
       enabled: yes
+
+# ansible-playbook 10-frontend.yaml
+
