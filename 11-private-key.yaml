@@ -6,3 +6,5 @@
     package: 
       name: nginx
       state: present
+# Now ansible doesn't require to pass user and password Instead it will connect with private key 
+# ansible-playbook 11-private-key.yaml 
